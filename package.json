@@ -1,0 +1,25 @@
+{
+  "name": "voterapp",
+  "version": "1.0.0",
+  "description": "voting app react redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joegrundman/rs-voteapp.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "voting",
+    "app"
+  ],
+  "author": "joegrundman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joegrundman/rs-voteapp/issues"
+  },
+  "homepage": "https://github.com/Joegrundman/rs-voteapp#readme"
+}
