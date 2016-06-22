@@ -244,13 +244,63 @@ module.exports =
 	var Signup = function (_React$Component) {
 	    _inherits(Signup, _React$Component);
 
-	    function Signup() {
+	    function Signup(props) {
 	        _classCallCheck(this, Signup);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Signup).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Signup).call(this, props));
+
+	        _this.state = {
+	            email: '',
+	            password: '',
+	            confirmPassword: ''
+	        };
+
+	        _this.handleEmailChange = _this.handleEmailChange.bind(_this);
+	        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
+	        _this.handleConfirmPasswordChange = _this.handleConfirmPasswordChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(Signup, [{
+	        key: 'handleEmailChange',
+	        value: function handleEmailChange(e) {
+	            this.setState({
+	                email: e.target.value
+	            });
+	        }
+	    }, {
+	        key: 'handlePasswordChange',
+	        value: function handlePasswordChange(e) {
+	            this.setState({
+	                password: e.target.value
+	            });
+	        }
+	    }, {
+	        key: 'handleConfirmPasswordChange',
+	        value: function handleConfirmPasswordChange(e) {
+	            this.setState({
+	                confirmPassword: e.target.value
+	            });
+	        }
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(e) {
+	            e.preventDefault();
+
+	            $.ajax({
+	                url: 'signup',
+	                method: 'post',
+	                data: JSON.stringify(this.state),
+	                success: function success(data) {
+	                    console.log('success');
+	                },
+	                error: function error(data) {
+	                    console.log('error');
+	                }
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -264,7 +314,7 @@ module.exports =
 	                        null,
 	                        _react2.default.createElement(
 	                            'form',
-	                            null,
+	                            { onSubmit: this.handleSubmit },
 	                            _react2.default.createElement(
 	                                'h1',
 	                                null,
@@ -288,18 +338,98 @@ module.exports =
 	                                    { className: 'form-group' },
 	                                    _react2.default.createElement(
 	                                        'label',
-	                                        { htmlFor: 'InputName' },
-	                                        'Enter Name'
+	                                        { htmlFor: 'InputEmail' },
+	                                        'Enter Email'
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'div',
 	                                        { className: 'input-group' },
-	                                        _react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'InputName', id: 'InputName', placeholder: 'Enter Name', required: true }),
+	                                        _react2.default.createElement('input', { type: 'email',
+	                                            className: 'form-control',
+	                                            value: this.state.email,
+	                                            onChange: this.handleEmailChange,
+	                                            name: 'InputEmail', id: 'InputEmail',
+	                                            placeholder: 'Enter Email', required: true }),
 	                                        _react2.default.createElement(
 	                                            'span',
 	                                            { className: 'input-group-addon' },
 	                                            _react2.default.createElement('span', { className: 'fa fa-asterisk' })
 	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    _react2.default.createElement(
+	                                        'label',
+	                                        { htmlFor: 'InputPassword' },
+	                                        'Enter Password'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'input-group' },
+	                                        _react2.default.createElement('input', { type: 'password',
+	                                            className: 'form-control',
+	                                            onChange: this.handlePasswordChange,
+	                                            name: 'InputPassword', id: 'InputPassword',
+	                                            placeholder: 'Enter Password', required: true }),
+	                                        _react2.default.createElement(
+	                                            'span',
+	                                            { className: 'input-group-addon' },
+	                                            _react2.default.createElement('span', { className: 'fa fa-asterisk' })
+	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    _react2.default.createElement(
+	                                        'label',
+	                                        { htmlFor: 'ConfirmPassword' },
+	                                        'Confirm Password'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'input-group' },
+	                                        _react2.default.createElement('input', { type: 'password',
+	                                            className: 'form-control',
+	                                            onChange: this.handleConfirmPasswordChange,
+	                                            name: 'ConfirmEmail', id: 'ConfirmEmail',
+	                                            placeholder: 'Confirm Password', required: true }),
+	                                        _react2.default.createElement(
+	                                            'span',
+	                                            { className: 'input-group-addon' },
+	                                            _react2.default.createElement('span', { className: 'fa fa-asterisk' })
+	                                        )
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement('input', { type: 'submit', className: 'btn btn-large btn-primary', value: 'Submit' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-5 col-md-push-1' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-md-12' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'alert alert-success' },
+	                                    _react2.default.createElement(
+	                                        'strong',
+	                                        null,
+	                                        _react2.default.createElement('span', { className: 'fa fa-check' }),
+	                                        ' Success! Message sent.'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'alert alert-danger' },
+	                                    _react2.default.createElement('span', { className: 'fa fa-remove' }),
+	                                    _react2.default.createElement(
+	                                        'strong',
+	                                        null,
+	                                        ' Error! Please check all page inputs.'
 	                                    )
 	                                )
 	                            )

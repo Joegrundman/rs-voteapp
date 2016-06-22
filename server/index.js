@@ -1,5 +1,6 @@
 var path = require('path')
 var express = require('express');
+var bodyParser = require('body-parser');
 var handlebars = require ('express-handlebars')
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
@@ -19,6 +20,8 @@ server.engine('handlebars', handlebars({
 server.set('view engine', 'handlebars');
 server.set('views', path.resolve(__dirname, 'views'))
 // static assets
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: false }));
 server.use(express.static(path.resolve(__dirname, '../dist')));
 
 // Routes
@@ -29,6 +32,11 @@ server.get('/', function (req, res){
     // res.send(ReactDOMServer.renderToString(React.createElement(App)));
     // res.send(ReactDOMServer.renderToString(<App />));
 });
+
+server.post('/signup', function(req, res) {
+    console.log('Got something', req.body)
+
+})
 
 server.listen(port, function () {
     console.log('serving on port:', port);
