@@ -21,7 +21,9 @@ module.exports = [{
     name: 'client',
     target: 'web',
     context: CLIENT_DIR,
-    entry: './app.js',
+    entry: [
+        './index.js'
+        ],
     output: {
         path: DIST_DIR,
         filename: 'bundle.js'
@@ -43,7 +45,7 @@ module.exports = [{
     target: 'node',
     context: CLIENT_DIR,
     entry: {
-        app: 'components/app/index.js'
+        app: 'components/App.js'
     },
     output: {
         path: SERVER_DIR,
