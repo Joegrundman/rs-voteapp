@@ -12,9 +12,12 @@ var port = process.env.PORT || 3000;
 var server = express();
 
 // view templates engine
-server.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+server.engine('handlebars', handlebars({ 
+    defaultLayout: 'main',
+    layoutsDir: path.resolve(__dirname, 'views/layouts') 
+}));
 server.set('view engine', 'handlebars');
-
+server.set('views', path.resolve(__dirname, 'views'))
 // static assets
 server.use(express.static(path.resolve(__dirname, '../dist')));
 
@@ -30,3 +33,5 @@ server.get('/', function (req, res){
 server.listen(port, function () {
     console.log('serving on port:', port);
 });
+
+module.exports = server;

@@ -20568,7 +20568,7 @@
 	                { className: 'container' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: '' },
+	                    { className: 'row' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
@@ -20579,6 +20579,39 @@
 	                                'h1',
 	                                null,
 	                                'Signup form'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-lg-6' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'well well-sm' },
+	                                    _react2.default.createElement(
+	                                        'strong',
+	                                        null,
+	                                        _react2.default.createElement('span', { className: 'fa fa-asterisk' }),
+	                                        'Required Field'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    _react2.default.createElement(
+	                                        'label',
+	                                        { htmlFor: 'InputName' },
+	                                        'Enter Name'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'input-group' },
+	                                        _react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'InputName', id: 'InputName', placeholder: 'Enter Name', required: true }),
+	                                        _react2.default.createElement(
+	                                            'span',
+	                                            { className: 'input-group-addon' },
+	                                            _react2.default.createElement('span', { className: 'fa fa-asterisk' })
+	                                        )
+	                                    )
+	                                )
 	                            )
 	                        )
 	                    )
@@ -20641,7 +20674,7 @@
 	                null,
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'container' },
+	                    { className: 'container footer-container' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'row' },

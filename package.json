@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "start:watch": "nodemon server",
+    "prestart:dev":"set NODE_ENV=development",
+    "start:dev": "nodemon --exec babel-node index.js -e js,handlebars",
+    "webpack:dev": "babel-node webpack.development.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +39,7 @@
     "node-sass": "^3.8.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-hot-loader": "^1.3.0",
     "react-router": "^2.4.1",
     "resolve-url-loader": "^1.4.3",
     "sass-loader": "^3.2.1",
