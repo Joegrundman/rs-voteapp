@@ -43,8 +43,8 @@ class Signup extends React.Component {
             url: 'signup',
             method: 'post',
             data: JSON.stringify(this.state),
-            success: function(data) {console.log('success')},
-            error: function(data) { console.log('error')}
+            success: function(data) {console.log('success', data)},
+            error: function(error) { console.log('error', error)}
         })
     }
 

@@ -1,16 +1,18 @@
 var path = require('path')
 var express = require('express');
 var bodyParser = require('body-parser');
-var handlebars = require ('express-handlebars')
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
+var logger = require('morgan')
+var handlebars = require ('express-handlebars');
 
-// import App from './generated/app'
-var App = require ('./generated/app').default;
+var passport = require('passport');
 
 var port = process.env.PORT || 3000;
 
+require('./database');
+
 var server = express();
+
+
 
 // view templates engine
 server.engine('handlebars', handlebars({ 
@@ -20,23 +22,28 @@ server.engine('handlebars', handlebars({
 server.set('view engine', 'handlebars');
 server.set('views', path.resolve(__dirname, 'views'))
 // static assets
+server.use(logger('dev'))
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(express.static(path.resolve(__dirname, '../dist')));
 
-// Routes
-server.get('/', function (req, res){
-    res.render('app', {
-        app: ReactDOMServer.renderToString(React.createElement(App))
-    });
-    // res.send(ReactDOMServer.renderToString(React.createElement(App)));
-    // res.send(ReactDOMServer.renderToString(<App />));
-});
 
-server.post('/signup', function(req, res) {
-    console.log('Got something', req.body)
 
-})
+server.use(passport.initialize());
+var router = require('./router')(server, passport);
+// // Routes
+// server.get('/', function (req, res){
+//     res.render('app', {
+//         app: ReactDOMServer.renderToString(React.createElement(App))
+//     });
+//     // res.send(ReactDOMServer.renderToString(React.createElement(App)));
+//     // res.send(ReactDOMServer.renderToString(<App />));
+// });
+
+// server.post('/signup', function(req, res) {
+//     console.log('Got something', req.body)
+
+// })
 
 server.listen(port, function () {
     console.log('serving on port:', port);

@@ -1,4 +1,8 @@
-import server from './server';
+/**
+ * main app index
+ */
+
+import server from './server/server';
 
 var config = {};
 

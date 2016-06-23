@@ -293,10 +293,10 @@ module.exports =
 	                method: 'post',
 	                data: JSON.stringify(this.state),
 	                success: function success(data) {
-	                    console.log('success');
+	                    console.log('success', data);
 	                },
-	                error: function error(data) {
-	                    console.log('error');
+	                error: function error(_error) {
+	                    console.log('error', _error);
 	                }
 	            });
 	        }
